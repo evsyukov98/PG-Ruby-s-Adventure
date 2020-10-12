@@ -13,8 +13,8 @@ public class RubyController : MonoBehaviour
     {
             Vector2 position = transform.position;
 
-            position.x = position.x + 0.01f * Input.GetAxis("Horizontal") * Time.deltaTime;
-            position.y = position.y + 0.01f * Input.GetAxis("Vertical") * Time.deltaTime;
+            position.x = position.x + 3f * Input.GetAxis("Horizontal") * Time.deltaTime;
+            position.y = position.y + 3f * Input.GetAxis("Vertical") * Time.deltaTime;
 
             transform.position = position;
     }
