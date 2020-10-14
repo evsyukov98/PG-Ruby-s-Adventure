@@ -4,7 +4,7 @@ namespace RubyAdventure
 {
     public class HealthCollectible : MonoBehaviour
     {
-        [SerializeField] private AudioClip collectedClip;
+        [SerializeField] private AudioClip collectedClip = default;
 
         private void OnTriggerEnter2D(Collider2D other)
         {

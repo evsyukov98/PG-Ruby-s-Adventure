@@ -9,7 +9,7 @@ namespace RubyAdventure
         [SerializeField] private float speed = 3.0f;
         [SerializeField] private bool vertical = false;
         [SerializeField] private float changeTime = 3.0f;
-        [SerializeField] private ParticleSystem smokeEffect;
+        [SerializeField] private ParticleSystem smokeEffect = default;
         
         private Animator _animator;
         private Rigidbody2D _rigidbody2D;

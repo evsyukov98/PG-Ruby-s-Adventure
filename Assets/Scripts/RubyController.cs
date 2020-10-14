@@ -12,7 +12,7 @@ namespace RubyAdventure
 
         public  int MaxHealth => maxHealth;
 
-        [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private GameObject projectilePrefab = default;
         [SerializeField] private int maxHealth = 5;
         [SerializeField] private float speed = 5f;
         [SerializeField] private float timeInvincible = 1.0f;

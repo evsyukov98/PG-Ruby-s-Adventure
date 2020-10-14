@@ -7,7 +7,7 @@ namespace RubyAdventure
     {
         public static UIHealthBar Instance { get; private set; }
 
-        [SerializeField] private Image mask;
+        [SerializeField] private Image mask = default;
 
         private float _originalSize;
 
