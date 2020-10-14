@@ -19,13 +19,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/InputManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/NonPlayerCharacter.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Projectile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DamageZone.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIHealthBar.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/RubyController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HealthCollectible.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RubyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/NonPlayerCharacter.cs" />
       </list>
     </option>
   </component>
@@ -75,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602667281926</updated>
-      <workItem from="1602667287816" duration="12294000" />
+      <workItem from="1602667287816" duration="12737000" />
     </task>
     <servers />
   </component>

@@ -4,21 +4,21 @@ namespace RubyAdventure
 {
     public class NonPlayerCharacter : MonoBehaviour
     {
-        private readonly float _displayTime = 4;
-        private GameObject _dialogBox;
+        [SerializeField] private float displayTime = 4;
+        [SerializeField] private GameObject dialogBox = default;
 
         private float _timerDisplay;
 
         private void Start()
         {
-            _dialogBox.SetActive(false);
+            dialogBox.SetActive(false);
             _timerDisplay = -1.0f;
         }
 
         public void DisplayDialog()
         {
-            _timerDisplay = _displayTime;
-            _dialogBox.SetActive(true);
+            _timerDisplay = displayTime;
+            dialogBox.SetActive(true);
         }
 
         private void Update()
@@ -34,7 +34,7 @@ namespace RubyAdventure
 
             if (_timerDisplay < 0)
             {
-                _dialogBox.SetActive(false);
+                dialogBox.SetActive(false);
             }
         }
     }
