@@ -8,15 +8,13 @@ namespace RubyAdventure
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            var controller = other.GetComponent<RubyController>();
-
-            if (controller == null) return;
+            if (!other.TryGetComponent<RubyController>(out var controller)) return;
             if (controller.CurrentHealth >= controller.MaxHealth) return;
                 
             controller.ChangeHealth(1);
-            Destroy(gameObject);
-                    
             controller.PlaySound(collectedClip);
+            
+            Destroy(gameObject);
         }
     }
 }

@@ -5,6 +5,7 @@ namespace RubyAdventure
 {
     public class UIHealthBar : MonoBehaviour
     {
+        
         public static UIHealthBar Instance { get; private set; }
 
         [SerializeField] private Image mask = default;

@@ -2,6 +2,8 @@
 
 namespace RubyAdventure
 {
+    
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Projectile : MonoBehaviour
     {
         private Rigidbody2D _rigidbody2D;
@@ -18,7 +20,7 @@ namespace RubyAdventure
 
         private void Update()
         {
-            if (transform.position.magnitude > 200.0f)
+            if (transform.position.sqrMagnitude > 40000.0f)
             {
                 Destroy(gameObject);
             }
@@ -26,14 +28,12 @@ namespace RubyAdventure
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            EnemyController e = other.collider.GetComponent<EnemyController>();
-
-            if (e != null)
+            if (other.collider.TryGetComponent<EnemyController>(out var e))
             {
                 e.Fix();
             }
 
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

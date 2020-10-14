@@ -6,9 +6,9 @@ namespace RubyAdventure
     {
         private void OnTriggerStay2D(Collider2D other)
         {
-            var controller = other.GetComponent<RubyController >();
+            if (!other.CompareTag("Player")) return;
 
-            if (controller != null)
+            if (other.TryGetComponent<RubyController>(out var controller))
             {
                 controller.ChangeHealth(-1);
             }

@@ -28,14 +28,11 @@ namespace RubyAdventure
 
         private void DialogTimer()
         {
-            if (!(_timerDisplay >= 0)) return;
+            if (_timerDisplay < 0) return;
 
             _timerDisplay -= Time.deltaTime;
 
-            if (_timerDisplay < 0)
-            {
-                dialogBox.SetActive(false);
-            }
+            if (_timerDisplay < 0) dialogBox.SetActive(false);
         }
     }
 }

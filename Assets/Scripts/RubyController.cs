@@ -2,15 +2,12 @@
 
 namespace RubyAdventure 
 {
+    
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(AudioSource))]
-
     public class RubyController : MonoBehaviour
     {
-        public  int CurrentHealth { get; private set; }
-
-        public  int MaxHealth => maxHealth;
 
         [SerializeField] private GameObject projectilePrefab = default;
         [SerializeField] private int maxHealth = 5;
@@ -26,6 +23,12 @@ namespace RubyAdventure
 
         private Vector2 _lookDirection = new Vector2(1,0);
 
+        private readonly string[] _interactionLayers = { "NPC" }; 
+        
+        public int CurrentHealth { get; private set; }
+
+        public  int MaxHealth => maxHealth;
+        
         private void Start()
         {
             _animator = GetComponent<Animator>();
@@ -55,17 +58,17 @@ namespace RubyAdventure
             _audioSource.PlayOneShot(clip);
         }
 
-        private void FixedUpdate()
-        {
-            AnimateControl(InputManager.Horizontal,InputManager.Vertical);
-            ActivateInvincible();
-            Move(speed, InputManager.Horizontal, InputManager.Vertical);
-        }
-
         private void Update()
         {
-            InteractionNPC(InputManager.X);
-            Launch(InputManager.C);
+            InteractionNPC(InputManager.IsActionPressed);
+            Launch(InputManager.IsFirePressed);
+        }
+
+        private void FixedUpdate()
+        {
+            AnimateControl(InputManager.Horizontal, InputManager.Vertical);
+            ActivateInvincible();
+            Move(speed, InputManager.Horizontal, InputManager.Vertical);
         }
 
 
@@ -77,7 +80,7 @@ namespace RubyAdventure
                 _rigidbody2D.position + Vector2.up * 0.2f,
                 _lookDirection, 
                 1.5f, 
-                LayerMask.GetMask("NPC"));
+                LayerMask.GetMask(_interactionLayers));
 
             if (hit.collider == null) return;
                 
