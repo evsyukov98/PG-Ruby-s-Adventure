@@ -1,37 +1,39 @@
-﻿using RubyAdventure;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour
+namespace RubyAdventure
 {
-    private Rigidbody2D _rigidbody2D;
-    
-    private void Awake()
+    public class Projectile : MonoBehaviour
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
-    
-    public void Launch(Vector2 direction, float force)
-    {
-        _rigidbody2D.AddForce(direction * force);
-    }
-    
-    private void Update()
-    {
-        if(transform.position.magnitude > 200.0f)
-        {
-            Destroy(gameObject);
-        }
-    }
-    
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        EnemyController e = other.collider.GetComponent<EnemyController>();
+        private Rigidbody2D _rigidbody2D;
 
-        if (e != null)
+        private void Awake()
         {
-            e.Fix();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         }
-        
-        Destroy(this.gameObject);
+
+        public void Launch(Vector2 direction, float force)
+        {
+            _rigidbody2D.AddForce(direction * force);
+        }
+
+        private void Update()
+        {
+            if (transform.position.magnitude > 200.0f)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            EnemyController e = other.collider.GetComponent<EnemyController>();
+
+            if (e != null)
+            {
+                e.Fix();
+            }
+
+            Destroy(this.gameObject);
+        }
     }
 }

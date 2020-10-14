@@ -1,24 +1,29 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHealthBar : MonoBehaviour
+namespace RubyAdventure
 {
-    public static UIHealthBar instance { get; private set; }
-
-    public Image mask;
-    float originalSize;
-
-    void Awake()
+    public class UIHealthBar : MonoBehaviour
     {
-        instance = this;
-    }
-    void Start()
-    {
-        originalSize = mask.rectTransform.rect.width;
-    }
+        public static UIHealthBar Instance { get; private set; }
 
-    public void SetValue(float value)
-    {				      
-        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
+        [SerializeField] private Image mask;
+
+        private float _originalSize;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
+        private void Start()
+        {
+            _originalSize = mask.rectTransform.rect.width;
+        }
+
+        public void SetValue(float value)
+        {
+            mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _originalSize * value);
+        }
     }
 }

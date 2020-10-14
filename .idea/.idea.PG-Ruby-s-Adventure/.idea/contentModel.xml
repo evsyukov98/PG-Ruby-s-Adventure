@@ -10,6 +10,7 @@
           <e p="DamageZone.cs" t="Include" />
           <e p="EnemyController.cs" t="Include" />
           <e p="HealthCollectible.cs" t="Include" />
+          <e p="InputManager.cs" t="Include" />
           <e p="NonPlayerCharacter.cs" t="Include" />
           <e p="Projectile.cs" t="Include" />
           <e p="RubyController.cs" t="Include" />

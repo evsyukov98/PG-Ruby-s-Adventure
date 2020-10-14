@@ -52,7 +52,12 @@ namespace RubyAdventure
 
         private void FixedUpdate()
         {
-            Vector2 position = _rigidbody2D.position;
+            Move();
+        }
+
+        private void Move()
+        {
+            var position = _rigidbody2D.position;
 
             if (vertical)
             {
@@ -68,16 +73,11 @@ namespace RubyAdventure
             }
             
             _rigidbody2D.MovePosition(position);
-            
-            if(!_broken)
-            {
-                return;
-            }
         }
-
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
-            RubyController player = other.gameObject.GetComponent<RubyController>();
+            var player = other.gameObject.GetComponent<RubyController>();
 
             if (player != null)
             {
