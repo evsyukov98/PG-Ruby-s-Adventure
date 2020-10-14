@@ -3,6 +3,7 @@
 namespace RubyAdventure 
 {
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Animator))]
     public class RubyController : MonoBehaviour
     {
         public  int CurrentHealth => _currentHealth;
@@ -19,16 +20,17 @@ namespace RubyAdventure
         private float _invincibleTimer;
 
         private Animator _animator;
-        
         private Rigidbody2D _rigidbody2D;
-        
+        private AudioSource _audioSource;
+
         private Vector2 _lookDirection = new Vector2(1,0);
 
         private void Start()
         {
             _animator = GetComponent<Animator>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
-
+            _audioSource = GetComponent<AudioSource>();
+            
             _currentHealth = maxHealth;
         }
         
@@ -44,23 +46,54 @@ namespace RubyAdventure
             
             _currentHealth = Mathf.Clamp(_currentHealth + amount, 0, maxHealth);
             
-            Debug.Log($"{_currentHealth.ToString()}/{maxHealth.ToString()}");
+            UIHealthBar.instance.SetValue(_currentHealth / (float)maxHealth);
+        }
+        
+        public void PlaySound(AudioClip clip)
+        {
+            _audioSource.PlayOneShot(clip);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             var hor = Input.GetAxis("Horizontal");
             var ver = Input.GetAxis("Vertical");
+            var x = Input.GetKeyDown(KeyCode.X);
             
             AnimateControl(hor,ver);
             ActivateInvincible();
             Move(speed, hor, ver);
+            
+            InteractionNPC(x);
             
             if(Input.GetKeyDown(KeyCode.C))
             {
                 Launch();
             }
         }
+
+        
+        private void InteractionNPC(bool activate)
+        {
+            if (activate)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(
+                    _rigidbody2D.position + Vector2.up * 0.2f,
+                    _lookDirection, 
+                    1.5f, 
+                    LayerMask.GetMask("NPC"));
+                
+                if (hit.collider != null)
+                {
+                    NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                    
+                    if (character != null)
+                    {
+                        character.DisplayDialog();
+                    }  
+                }
+            }
+        } 
 
         private void AnimateControl(float horizontal, float vertical)
         {
