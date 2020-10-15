@@ -8,8 +8,12 @@ namespace RubyAdventure
     [RequireComponent(typeof(AudioSource))]
     public class RubyController : MonoBehaviour
     {
-
-        [SerializeField] private GameObject projectilePrefab = default;
+        private readonly string[] _interactionLayers = { "NPC" };
+        private static readonly int AnimatorLaunch = Animator.StringToHash("Launch");
+        private static readonly int AnimatorLookX = Animator.StringToHash("Look X");
+        private static readonly int AnimatorSpeed = Animator.StringToHash("Speed");
+        private static readonly int AnimatorLookY = Animator.StringToHash("Look Y");
+        
         [SerializeField] private int maxHealth = 5;
         [SerializeField] private float speed = 5f;
         [SerializeField] private float timeInvincible = 1.0f;
@@ -23,8 +27,6 @@ namespace RubyAdventure
 
         private Vector2 _lookDirection = new Vector2(1,0);
 
-        private readonly string[] _interactionLayers = { "NPC" }; 
-        
         public int CurrentHealth { get; private set; }
 
         public  int MaxHealth => maxHealth;
@@ -83,10 +85,8 @@ namespace RubyAdventure
                 LayerMask.GetMask(_interactionLayers));
 
             if (hit.collider == null) return;
-                
-            var character = hit.collider.GetComponent<NonPlayerCharacter>();
-                    
-            if (character != null)
+            
+            if (hit.collider.TryGetComponent<NonPlayerCharacter>(out var character))
             {
                 character.DisplayDialog();
             }
@@ -106,10 +106,10 @@ namespace RubyAdventure
                 _lookDirection.Normalize();
             }
             
-            _animator.SetFloat("Look X", _lookDirection.x);
-            _animator.SetFloat("Look Y", _lookDirection.y);
+            _animator.SetFloat(AnimatorLookX, _lookDirection.x);
+            _animator.SetFloat(AnimatorLookY, _lookDirection.y);
             // magnitude - длина вектора (скорость).
-            _animator.SetFloat("Speed", move.magnitude);
+            _animator.SetFloat(AnimatorSpeed, move.magnitude);
         }
 
         private void ActivateInvincible()
@@ -131,15 +131,16 @@ namespace RubyAdventure
 
         private void Launch(bool activate)
         {
-            if (!activate) return;
+            if(!activate) return;
+
+            var projectileObject = PoolManager.instance.GetPoolObject(PoolType.Cog);
+            projectileObject.transform.position = _rigidbody2D.position + Vector2.up * 0.5f;
             
-            var projectileObject = Instantiate(projectilePrefab,
-                _rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
-
-            var projectile = projectileObject.GetComponent<Projectile>();
-            projectile.Launch(_lookDirection, 300);
-
-            _animator.SetTrigger("Launch");
+            if (projectileObject.TryGetComponent<Projectile>(out var projectile))
+            {
+                projectile.Launch(_lookDirection, 300);
+            }
+            _animator.SetTrigger(AnimatorLaunch);
         }
     }
 }

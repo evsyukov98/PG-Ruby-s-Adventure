@@ -2,6 +2,7 @@
 
 namespace RubyAdventure
 {
+    
     public class HealthCollectible : MonoBehaviour
     {
         [SerializeField] private AudioClip collectedClip = default;

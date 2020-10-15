@@ -2,6 +2,7 @@
 
 namespace RubyAdventure
 {
+    
     public class NonPlayerCharacter : MonoBehaviour
     {
         [SerializeField] private float displayTime = 4;
