@@ -19,7 +19,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NonPlayerCharacter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectPool/PoolManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectPool/Singleton.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -39,8 +38,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool/SimplePoolManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool/Pool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool/PoolType.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Projectile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool/PoolManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Projectile.cs" />
       </list>
     </option>
   </component>
@@ -94,7 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602667281926</updated>
       <workItem from="1602667287816" duration="12737000" />
-      <workItem from="1602745290919" duration="16420000" />
+      <workItem from="1602745290919" duration="17298000" />
     </task>
     <servers />
   </component>

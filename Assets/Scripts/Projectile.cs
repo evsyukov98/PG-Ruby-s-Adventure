@@ -13,6 +13,14 @@ namespace RubyAdventure
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
+        private void Update()
+        {
+            if (transform.position.sqrMagnitude > 40000.0f)
+            {
+                OnDespawn();
+            }
+        }
+
         public void Launch(Vector2 direction, float force)
         {
             _rigidbody2D.AddForce(direction * force);

@@ -17,10 +17,10 @@
             <e p="Pool.cs" t="Include" />
             <e p="PoolManager.cs" t="Include" />
             <e p="PoolType.cs" t="Include" />
-            <e p="Singleton.cs" t="Include" />
           </e>
           <e p="Projectile.cs" t="Include" />
           <e p="RubyController.cs" t="Include" />
+          <e p="Singleton.cs" t="Include" />
           <e p="UIHealthBar.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
